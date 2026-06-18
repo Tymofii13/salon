@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Skøn — Skønhed Med Omtanke | Negle, Bryn, Vipper, Sugaring & Spray Tan i København</title>
+<meta name="description" content="Studio Skøn er et eksklusivt skønhedsstudie i København. Professionelle behandlinger inden for negle, bryn, vipper, sugaring og spray tan i elegante omgivelser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --ivory:#FBF8F3;
+  --warm-white:#FEFCF8;
+  --beige:#EFE7DB;
+  --sand:#E0D3C0;
+  --champagne:#C5A572;
+  --champagne-deep:#A8843F;
+  --charcoal:#2B2724;
+  --taupe:#857A6C;
+  --line:rgba(43,39,36,.12);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Jost',-apple-system,BlinkMacSystemFont,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --maxw:1280px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--ivory);
+  color:var(--charcoal);
+  font-weight:300;
+  line-height:1.75;
+  font-size:16px;
+  letter-spacing:.01em;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ============ HELPERS ============ */
+.container{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+.eyebrow{
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  color:var(--champagne-deep);
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+}
+.eyebrow::before{content:"";width:32px;height:1px;background:var(--champagne)}
+.eyebrow.centered{justify-content:center}
+.eyebrow.centered::after{content:"";width:32px;height:1px;background:var(--champagne)}
+
+.serif-title{
+  font-family:var(--serif);
+  font-weight:300;
+  line-height:1.08;
+  letter-spacing:.005em;
+  color:var(--charcoal);
+}
+.section-title{font-size:clamp(2.4rem,5vw,4.2rem)}
+
+.lede{
+  font-size:1.08rem;
+  color:var(--taupe);
+  font-weight:300;
+  max-width:46ch;
+}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:400;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  padding:18px 38px;
+  border:1px solid var(--charcoal);
+  color:var(--charcoal);
+  background:transparent;
+  transition:all .5s var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+.btn span{position:relative;z-index:1;transition:color .5s var(--ease)}
+.btn::after{
+  content:"";position:absolute;inset:0;background:var(--charcoal);
+  transform:translateY(101%);transition:transform .5s var(--ease);
+}
+.btn:hover::after{transform:translateY(0)}
+.btn:hover span{color:var(--ivory)}
+.btn.gold{border-color:var(--champagne)}
+.btn.gold::after{background:var(--champagne)}
+.btn.gold:hover span{color:#fff}
+.btn.solid{background:var(--charcoal);color:var(--ivory);border-color:var(--charcoal)}
+.btn.solid::after{background:var(--champagne)}
+.btn.light{border-color:rgba(255,255,255,.55);color:#fff}
+.btn.light::after{background:#fff}
+.btn.light:hover span{color:var(--charcoal)}
+.btn.filled-light{background:#fff;color:var(--charcoal);border-color:#fff}
+.btn.filled-light::after{background:var(--champagne)}
+.btn.filled-light:hover span{color:#fff}
+
+/* ============ IMAGE PLACEHOLDERS ============ */
+.img{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(120% 120% at 30% 20%, rgba(255,255,255,.5), transparent 60%),
+    linear-gradient(135deg,var(--beige),var(--sand));
+}
+.img::after{
+  content:attr(data-label);
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:10px;letter-spacing:.34em;text-transform:uppercase;
+  color:rgba(133,122,108,.7);
+  padding:20px;text-align:center;
+}
+.img img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;
+  transition:transform 1.1s var(--ease);
+}
+
+/* ============ HEADER ============ */
+.header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:26px 0;
+  transition:background .6s var(--ease),padding .6s var(--ease),box-shadow .6s var(--ease);
+}
+.header.scrolled{
+  background:var(--warm-white);
+  padding:16px 0;
+  box-shadow:0 1px 0 var(--line),0 18px 50px -30px rgba(43,39,36,.25);
+}
+.nav{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:13px;color:#fff;transition:color .6s var(--ease)}
+.header.scrolled .logo{color:var(--charcoal)}
+.logo-img{height:48px;width:auto;display:block;transition:filter .6s var(--ease)}
+.header .logo-img{filter:brightness(0) invert(1)}
+.header.scrolled .logo-img{filter:none}
+.logo-mark{
+  width:42px;height:42px;border:1px solid currentColor;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:21px;font-style:italic;font-weight:400;
+  opacity:.9;
+}
+.logo-word{display:flex;flex-direction:column;line-height:1}
+.logo-word b{font-family:var(--serif);font-weight:400;font-size:1.45rem;letter-spacing:.04em}
+.logo-word small{font-size:8.5px;letter-spacing:.46em;text-transform:uppercase;opacity:.7;margin-top:3px;font-weight:400}
+
+.menu{display:flex;align-items:center;gap:42px;list-style:none}
+.menu a{
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:400;
+  color:rgba(255,255,255,.9);position:relative;padding:4px 0;transition:color .6s var(--ease);
+}
+.header.scrolled .menu a{color:var(--charcoal)}
+.menu a::after{
+  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--champagne);
+  transition:width .45s var(--ease);
+}
+.menu a:hover::after{width:100%}
+.menu a:hover{color:var(--champagne-deep)}
+
+.burger{display:none;flex-direction:column;gap:6px;padding:8px;z-index:110}
+.burger span{width:26px;height:1.5px;background:#fff;transition:all .4s var(--ease)}
+.header.scrolled .burger span{background:var(--charcoal)}
+.menu-open .burger span{background:var(--charcoal)}
+.menu-open .burger span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.menu-open .burger span:nth-child(2){opacity:0}
+.menu-open .burger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  background-color:#2f2922;overflow:hidden;
+  background-image:linear-gradient(to bottom,rgba(28,24,21,.5),rgba(28,24,21,.34) 45%,rgba(28,24,21,.62)),url('hero.jpg');
+  background-size:cover;background-position:center;
+}
+.hero-inner{position:relative;z-index:2;padding:120px 0 80px;max-width:760px}
+/* smooth, staggered fade + blur-to-sharp on load */
+.hero-inner > *{opacity:0;animation:heroIn 1.3s var(--ease) forwards}
+.hero-inner > *:nth-child(1){animation-delay:.20s}
+.hero-inner > *:nth-child(2){animation-delay:.34s}
+.hero-inner > *:nth-child(3){animation-delay:.48s}
+.hero-inner > *:nth-child(4){animation-delay:.62s}
+@keyframes heroIn{
+  from{opacity:0;transform:translateY(20px);filter:blur(8px)}
+  to{opacity:1;transform:none;filter:blur(0)}
+}
+.hero .eyebrow{color:#E7D6B5}
+.hero .eyebrow::before{background:#E7D6B5}
+.hero h1{
+  font-family:var(--serif);font-weight:300;color:#fff;
+  font-size:clamp(3.1rem,8.5vw,7rem);line-height:1.02;letter-spacing:.01em;
+  margin:30px 0 26px;
+}
+.hero h1 em{font-style:italic;color:#EBDBBE}
+.hero p{color:rgba(255,255,255,.86);font-size:1.18rem;font-weight:300;max-width:50ch;line-height:1.7}
+.hero-btns{display:flex;gap:18px;margin-top:46px;flex-wrap:wrap}
+
+.scroll-ind{
+  position:absolute;bottom:38px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:14px;color:rgba(255,255,255,.7);
+}
+.scroll-ind span{font-size:9.5px;letter-spacing:.4em;text-transform:uppercase}
+.scroll-ind .line{width:1px;height:54px;background:linear-gradient(rgba(255,255,255,.6),transparent);position:relative;overflow:hidden}
+.scroll-ind .line::after{content:"";position:absolute;top:-54px;left:0;width:1px;height:54px;background:#E7D6B5;animation:scrollDot 2.4s var(--ease) infinite}
+@keyframes scrollDot{0%{top:-54px}60%,100%{top:54px}}
+
+/* ============ SECTION RHYTHM ============ */
+.s{padding:92px 0}
+.s-tight{padding:64px 0}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:0.95fr 1.05fr;gap:80px;align-items:center}
+.about-img-wrap{position:relative}
+.about-img{aspect-ratio:4/5}
+.about-frame{position:absolute;inset:24px -24px -24px 24px;border:1px solid var(--champagne);z-index:-1}
+.about-quote{
+  position:absolute;left:-30px;bottom:46px;background:var(--warm-white);
+  padding:26px 30px;box-shadow:0 30px 60px -32px rgba(43,39,36,.4);max-width:230px;z-index:2;
+}
+.about-quote b{font-family:var(--serif);font-size:2.6rem;color:var(--champagne-deep);font-weight:400;display:block;line-height:1}
+.about-quote small{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+.about-content h2{font-size:clamp(2.2rem,4.4vw,3.6rem);margin:24px 0 28px}
+.about-content p{color:#5e564d;margin-bottom:20px;max-width:52ch;font-size:1.05rem}
+.about-values{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;margin:34px 0 38px}
+.about-values li{display:flex;align-items:center;gap:13px;font-size:14px;letter-spacing:.04em;color:var(--charcoal)}
+.about-values li::before{content:"";width:6px;height:6px;background:var(--champagne);transform:rotate(45deg);flex-shrink:0}
+.signoff{display:flex;align-items:center;gap:18px;margin-top:10px}
+.signoff .sig{font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--charcoal)}
+.signoff small{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe)}
+
+/* ============ SERVICES ============ */
+.s-head{text-align:center;max-width:640px;margin:0 auto 48px}
+.s-head h2{margin:22px 0 18px}
+.s-head p{color:var(--taupe);font-size:1.08rem;margin:0 auto}
+.services{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.svc{position:relative;overflow:hidden;background:var(--charcoal);min-height:440px;display:flex;flex-direction:column;justify-content:flex-end}
+.svc .img{position:absolute;inset:0}
+.svc .img::after{color:rgba(255,255,255,.35)}
+.svc::before{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:linear-gradient(to top,rgba(24,20,17,.88),rgba(24,20,17,.25) 55%,rgba(24,20,17,.05));
+  transition:opacity .6s var(--ease);
+}
+.svc:hover .img img{transform:scale(1.07)}
+.svc-body{position:relative;z-index:3;padding:38px;color:#fff;transition:transform .6s var(--ease)}
+.svc-index{font-family:var(--serif);font-size:13px;letter-spacing:.3em;color:#E7D6B5;display:block;margin-bottom:14px}
+.svc h3{font-family:var(--serif);font-weight:300;font-size:2.6rem;line-height:1;margin-bottom:8px}
+.svc-list{
+  list-style:none;max-height:0;opacity:0;overflow:hidden;
+  transition:max-height .7s var(--ease),opacity .5s var(--ease),margin .6s var(--ease);
+}
+.svc:hover .svc-list,.svc:focus-within .svc-list{max-height:240px;opacity:1;margin-top:18px}
+.svc-list li{
+  font-size:13.5px;letter-spacing:.05em;color:rgba(255,255,255,.86);
+  padding:7px 0;border-top:1px solid rgba(255,255,255,.16);
+}
+.svc-list li:first-child{border-top:none}
+
+/* ============ WHY ============ */
+.why{background:var(--beige)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.why-card{
+  background:var(--warm-white);padding:24px 26px;text-align:left;
+  display:flex;align-items:center;gap:18px;
+  transition:background .5s var(--ease);
+}
+.why-card:hover{background:var(--ivory)}
+.why-card .ic{width:30px;height:30px;flex-shrink:0;margin:0;color:var(--champagne-deep)}
+.why-card .ic svg{width:100%;height:100%;stroke-width:1}
+.why-card .wtxt h4{font-family:var(--serif);font-weight:400;font-size:1.18rem;margin-bottom:2px;letter-spacing:.01em;line-height:1.15}
+.why-card .wtxt p{font-size:12px;color:var(--taupe);line-height:1.45}
+
+/* ============ GALLERY ============ */
+.masonry{columns:3;column-gap:22px}
+.masonry .gitem{
+  break-inside:avoid;margin-bottom:22px;position:relative;overflow:hidden;cursor:pointer;
+}
+.masonry .gitem .img{width:100%}
+.masonry .gitem:hover .img img{transform:scale(1.08)}
+.masonry .gitem::after{
+  content:"";position:absolute;inset:0;z-index:3;background:rgba(43,39,36,.12);
+  opacity:0;transition:opacity .55s var(--ease);
+}
+.masonry .gitem:hover::after{opacity:1}
+.g-tall{aspect-ratio:3/4}
+.g-wide{aspect-ratio:4/3}
+.g-sq{aspect-ratio:1/1}
+
+/* Featured 3-image gallery (homepage) */
+.gallery-feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.gallery-feat .gitem{position:relative;overflow:hidden;cursor:pointer}
+.gallery-feat .gitem:hover .img img{transform:scale(1.08)}
+.gallery-feat .gitem::after{content:"";position:absolute;inset:0;z-index:3;background:rgba(43,39,36,.12);opacity:0;transition:opacity .55s var(--ease)}
+.gallery-feat .gitem:hover::after{opacity:1}
+.gallery-more{text-align:center;margin-top:42px}
+
+/* ============ ATMOSPHERE ============ */
+.atmos{position:relative;background:var(--charcoal);color:#fff;overflow:hidden}
+.atmos-grid{display:grid;grid-template-columns:1fr 1fr 1fr;min-height:500px}
+.atmos-img{position:relative}
+.atmos-img .img{position:absolute;inset:0;filter:grayscale(.15) brightness(.82)}
+.atmos-img .img::after{color:rgba(255,255,255,.25)}
+.atmos-text{
+  position:absolute;z-index:5;top:50%;left:50%;transform:translate(-50%,-50%);
+  text-align:center;background:rgba(28,24,21,.55);backdrop-filter:blur(3px);
+  padding:64px 60px;max-width:560px;border:1px solid rgba(231,214,181,.3);
+}
+.atmos-text .eyebrow{color:#E7D6B5}
+.atmos-text .eyebrow::before,.atmos-text .eyebrow::after{background:#E7D6B5}
+.atmos-text h2{color:#fff;font-size:clamp(2.4rem,5vw,4rem);margin:22px 0 22px}
+.atmos-text p{color:rgba(255,255,255,.82);font-size:1.1rem;font-weight:300;max-width:42ch;margin:0 auto}
+
+/* ============ REVIEWS ============ */
+.reviews{background:var(--warm-white)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.rev{padding:32px 30px;border:1px solid var(--line);background:var(--ivory);transition:transform .55s var(--ease),box-shadow .55s var(--ease)}
+.rev:hover{transform:translateY(-6px);box-shadow:0 40px 70px -45px rgba(43,39,36,.45)}
+.rev .stars{display:flex;gap:5px;color:var(--champagne);margin-bottom:16px}
+.rev .stars svg{width:15px;height:15px}
+.rev p{font-family:var(--serif);font-size:1.2rem;font-weight:400;line-height:1.5;color:var(--charcoal);font-style:italic;margin-bottom:22px}
+.rev .who{display:flex;align-items:center;gap:14px}
+.rev .who .av{width:42px;height:42px;border-radius:50%;background:var(--sand);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.1rem;color:var(--charcoal)}
+.rev .who b{font-weight:400;font-size:14px;letter-spacing:.04em;display:block}
+.rev .who small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe)}
+
+/* ============ INSTAGRAM ============ */
+.insta-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;gap:30px;flex-wrap:wrap}
+.insta-head h2{font-size:clamp(2rem,4vw,3rem)}
+.insta-head .tag{font-family:var(--serif);font-style:italic;color:var(--champagne-deep);font-size:1.4rem}
+.insta-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.insta-grid .gi{position:relative;aspect-ratio:1/1;overflow:hidden}
+.insta-grid .gi .img{position:absolute;inset:0}
+.insta-grid .gi:hover .img img{transform:scale(1.1)}
+.insta-grid .gi::after{
+  content:"";position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;
+  background:rgba(43,39,36,.32);opacity:0;transition:opacity .5s var(--ease);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='none' stroke='%23fff' stroke-width='1.4'%3E%3Crect x='4' y='4' width='22' height='22' rx='6'/%3E%3Ccircle cx='15' cy='15' r='6'/%3E%3Ccircle cx='22' cy='8' r='1.4' fill='%23fff'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:center;
+}
+.insta-grid .gi:hover::after{opacity:1}
+.insta-cta{text-align:center;margin-top:50px}
+
+/* ============ GIFT CARD ============ */
+.gift{position:relative;min-height:440px;display:flex;align-items:center;overflow:hidden;
+  background-color:#2f2922;
+  background-image:linear-gradient(105deg,rgba(28,24,21,.86) 0%,rgba(28,24,21,.5) 50%,rgba(28,24,21,.12) 100%),url('giftcard.jpg');
+  background-size:cover;background-position:center;
+}
+.gift .container{position:relative;z-index:2}
+.gift-box{max-width:520px;color:#fff}
+.gift-box .eyebrow{color:#E7D6B5}
+.gift-box .eyebrow::before{background:#E7D6B5}
+.gift-box h2{color:#fff;font-size:clamp(2.4rem,5vw,4.2rem);margin:24px 0 22px}
+.gift-box p{color:rgba(255,255,255,.85);font-size:1.12rem;font-weight:300;margin-bottom:38px;max-width:44ch}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:0;border:1px solid var(--line)}
+.contact-info{padding:56px;background:var(--warm-white)}
+.contact-info h2{font-size:clamp(2rem,4vw,3rem);margin:20px 0 14px}
+.contact-info > p{color:var(--taupe);margin-bottom:30px;max-width:40ch}
+.cinfo-row{display:flex;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.cinfo-row .ic{width:34px;height:34px;color:var(--champagne-deep);flex-shrink:0;margin-top:3px}
+.cinfo-row .ic svg{width:100%;height:100%;stroke-width:1.1}
+.cinfo-row b{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);margin-bottom:7px;font-weight:400}
+.cinfo-row a,.cinfo-row span{font-family:var(--serif);font-size:1.35rem;color:var(--charcoal);transition:color .4s var(--ease);font-style:normal}
+.cinfo-row a:hover{color:var(--champagne-deep)}
+.cinfo-row .hours{font-family:var(--sans);font-size:14px;color:#5e564d;line-height:1.9}
+.map-wrap{position:relative;min-height:440px;background:var(--sand)}
+.map-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.35) contrast(.95)}
+
+/* ============ FLOATING BUTTON ============ */
+.fab-wrap{position:fixed;bottom:30px;right:30px;z-index:200}
+.fab{
+  width:64px;height:64px;border-radius:50%;background:var(--charcoal);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 18px 40px -12px rgba(43,39,36,.6);
+  transition:transform .5s var(--ease),background .5s var(--ease);
+  position:relative;
+}
+.fab::before{
+  content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--champagne);
+  animation:pulse 2.6s ease-out infinite;
+}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.55);opacity:0}}
+.fab:hover{transform:scale(1.07);background:var(--champagne)}
+.fab svg{width:26px;height:26px;stroke-width:1.3;transition:transform .5s var(--ease)}
+.fab-open .fab svg.ic-chat{transform:rotate(90deg) scale(0)}
+.fab .ic-close{position:absolute;opacity:0;transform:scale(0);transition:all .5s var(--ease)}
+.fab-open .fab .ic-close{opacity:1;transform:scale(1)}
+
+.contact-card{
+  position:absolute;bottom:82px;right:0;width:330px;
+  background:var(--warm-white);
+  box-shadow:0 40px 80px -30px rgba(43,39,36,.5);
+  border:1px solid var(--line);
+  opacity:0;visibility:hidden;transform:translateY(20px) scale(.96);transform-origin:bottom right;
+  transition:all .55s var(--ease);
+}
+.fab-open .contact-card{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.cc-head{background:var(--charcoal);color:#fff;padding:30px 30px 26px;text-align:center}
+.cc-head .mark{
+  width:48px;height:48px;margin:0 auto 14px;border:1px solid var(--champagne);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-size:1.5rem;color:#E7D6B5;
+}
+.cc-head b{font-family:var(--serif);font-weight:400;font-size:1.4rem;letter-spacing:.03em}
+.cc-head small{display:block;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:6px}
+.cc-body{padding:14px 24px 26px}
+.cc-link{display:flex;align-items:center;gap:16px;padding:18px 8px;border-bottom:1px solid var(--line);transition:padding .4s var(--ease)}
+.cc-link:last-child{border-bottom:none}
+.cc-link:hover{padding-left:14px}
+.cc-link .ic{width:38px;height:38px;border-radius:50%;background:var(--beige);color:var(--champagne-deep);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .4s var(--ease)}
+.cc-link:hover .ic{background:var(--sand)}
+.cc-link .ic svg{width:18px;height:18px;stroke-width:1.3}
+.cc-link small{display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);font-weight:400}
+.cc-link b{font-weight:400;font-size:15px;color:var(--charcoal);letter-spacing:.02em}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--charcoal);color:rgba(255,255,255,.7);padding:70px 0 32px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:50px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot-brand .logo{color:#fff;margin-bottom:22px}
+.foot-brand p{font-size:14px;line-height:1.8;max-width:30ch;color:rgba(255,255,255,.6)}
+.foot-col h5{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#E7D6B5;margin-bottom:24px;font-weight:400}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:13px}
+.foot-col a{font-size:14px;color:rgba(255,255,255,.7);transition:color .4s var(--ease)}
+.foot-col a:hover{color:#fff}
+.foot-col p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.6)}
+.foot-social{display:flex;gap:14px;margin-top:8px}
+.foot-social a{width:40px;height:40px;border:1px solid rgba(255,255,255,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .45s var(--ease)}
+.foot-social a:hover{border-color:var(--champagne);background:var(--champagne)}
+.foot-social svg{width:17px;height:17px;stroke-width:1.3}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:30px;flex-wrap:wrap;gap:14px}
+.foot-bottom p,.foot-bottom a{font-size:12px;letter-spacing:.05em;color:rgba(255,255,255,.5)}
+.foot-bottom a:hover{color:#fff}
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none;filter:blur(0)}
+.reveal.d1{transition-delay:.08s}
+.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}
+.reveal.d4{transition-delay:.32s}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1024px){
+  .container{padding:0 30px}
+  .s{padding:100px 0}
+  .about-grid{gap:54px}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .masonry{columns:2}
+  .insta-grid{grid-template-columns:repeat(3,1fr)}
+  .atmos-grid{grid-template-columns:1fr 1fr}
+  .atmos-img:nth-child(3){display:none}
+}
+@media(max-width:768px){
+  .menu{
+    position:fixed;inset:0;background:var(--warm-white);flex-direction:column;justify-content:center;
+    gap:34px;transform:translateX(100%);transition:transform .6s var(--ease);
+  }
+  .menu-open .menu{transform:translateX(0)}
+  .menu a{color:var(--charcoal);font-size:15px}
+  .burger{display:flex}
+  .about-grid{grid-template-columns:1fr}
+  .about-frame{inset:16px -16px -16px 16px}
+  .about-quote{left:0}
+  .about-values{grid-template-columns:1fr}
+  .services{grid-template-columns:1fr}
+  .svc{min-height:440px}
+  .svc-list{max-height:240px;opacity:1;margin-top:18px}
+  .rev-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .contact-info{padding:48px 32px}
+  .atmos-grid{grid-template-columns:1fr;min-height:auto}
+  .atmos-img{min-height:340px}
+  .atmos-img:nth-child(2),.atmos-img:nth-child(3){display:none}
+  .atmos-text{position:relative;transform:none;top:auto;left:auto;max-width:100%;border:none;background:var(--charcoal)}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .gallery-feat{grid-template-columns:1fr}
+  .hero-inner{padding-top:120px}
+  .logo-img{height:38px}
+  .fab-wrap{bottom:20px;right:20px}
+  .contact-card{width:calc(100vw - 40px);right:0}
+}
+@media(max-width:480px){
+  .container{padding:0 22px}
+  .masonry{columns:1}
+  .insta-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:flex-start}
+  .btn{width:100%;justify-content:center}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none;filter:none}
+  .hero-inner > *{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="header">
+  <div class="container nav">
+    <a href="#hero" class="logo" aria-label="Wild Orchid — forside">
+      <img src="logo.png" alt="Wild Orchid" class="logo-img">
+    </a>
+    <ul class="menu" id="menu">
+      <li><a href="#hero">Forside</a></li>
+      <li><a href="#behandlinger">Behandlinger</a></li>
+      <li><a href="#om-mig">Om Mig</a></li>
+      <li><a href="#galleri">Galleri</a></li>
+      <li><a href="#anmeldelser">Anmeldelser</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Åbn menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <span class="eyebrow">Skønhedsstudie · København</span>
+      <h1>Skønhed Med <em>Omtanke</em></h1>
+      <p>Professionelle behandlinger inden for negle, bryn, vipper, sugaring og spray tan i elegante og afslappende omgivelser.</p>
+      <div class="hero-btns">
+        <a href="#behandlinger" class="btn light"><span>Se Behandlinger</span></a>
+        <a href="#kontakt" class="btn light"><span>Kontakt Os</span></a>
+      </div>
+    </div>
+  </div>
+  <a href="#om-mig" class="scroll-ind" aria-label="Scroll ned">
+    <span>Scroll</span>
+    <span class="line"></span>
+  </a>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="s" id="om-mig">
+  <div class="container about-grid">
+    <div class="about-img-wrap reveal">
+      <div class="about-frame"></div>
+      <div class="img about-img" data-label="owner.jpg">
+        <img src="owner.jpg" alt="Din skønhedsspecialist hos Studio Skøn" onerror="this.style.display='none'">
+      </div>
+      <div class="about-quote">
+        <b>10+</b>
+        <small>års erfaring</small>
+      </div>
+    </div>
+    <div class="about-content reveal d1">
+      <span class="eyebrow">Om Mig</span>
+      <h2 class="serif-title">Mød Din Skønhedsspecialist</h2>
+      <p>Velkommen til Studio Skøn. Mit navn er Marie, og gennem mere end ti år har jeg dedikeret mit arbejde til at fremhæve det smukke i hver enkelt kunde — roligt, omhyggeligt og altid med fokus på det naturlige resultat.</p>
+      <p>For mig handler skønhed ikke om at forandre, men om at forfine. Hver behandling tilrettelægges personligt, så du forlader studiet med en følelse af velvære, der varer ved.</p>
+      <ul class="about-values">
+        <li>Mere end 10 års erfaring</li>
+        <li>Kærlighed til detaljen</li>
+        <li>Personlig service</li>
+        <li>Høj kvalitet</li>
+        <li>Komfort og velvære</li>
+        <li>Naturlige resultater</li>
+      </ul>
+      <div class="signoff">
+        <span class="sig">Marie</span>
+        <small>Indehaver &amp; Skønhedsspecialist</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="s" id="behandlinger" style="background:var(--ivory)">
+  <div class="container">
+    <div class="s-head reveal">
+      <span class="eyebrow centered">Behandlinger</span>
+      <h2 class="serif-title section-title">En Omhyggelig Udvalgt Palette</h2>
+      <p>Hver behandling er udført med præcision, premium produkter og dyb respekt for det naturlige udtryk.</p>
+    </div>
+    <div class="services">
+      <article class="svc reveal" tabindex="0">
+        <div class="img" data-label="nails1.jpg"><img src="nails1.jpg" alt="Negle behandling" onerror="this.style.display='none'"></div>
+        <div class="svc-body">
+          <span class="svc-index">01 — Negle</span>
+          <h3>Negle</h3>
+          <ul class="svc-list">
+            <li>Manicure</li>
+            <li>Gel Polish</li>
+            <li>Forstærkning</li>
+            <li>Nail Art</li>
+            <li>Luksus Neglepleje</li>
+          </ul>
+        </div>
+      </article>
+      <article class="svc reveal d1" tabindex="0">
+        <div class="img" data-label="lashes1.jpg"><img src="lashes1.jpg" alt="Bryn og vipper behandling" onerror="this.style.display='none'"></div>
+        <div class="svc-body">
+          <span class="svc-index">02 — Bryn &amp; Vipper</span>
+          <h3>Bryn &amp; Vipper</h3>
+          <ul class="svc-list">
+            <li>Bryn Styling</li>
+            <li>Bryn Farve</li>
+            <li>Vippe Farve</li>
+            <li>Lash Lift</li>
+            <li>Vippe Extensions</li>
+          </ul>
+        </div>
+      </article>
+      <article class="svc reveal" tabindex="0">
+        <div class="img" data-label="sugaring1.jpg"><img src="sugaring1.jpg" alt="Sugaring og voks behandling" onerror="this.style.display='none'"></div>
+        <div class="svc-body">
+          <span class="svc-index">03 — Sugaring &amp; Voks</span>
+          <h3>Sugaring &amp; Voks</h3>
+          <ul class="svc-list">
+            <li>Sugaring</li>
+            <li>Voksbehandling</li>
+            <li>Ansigt</li>
+            <li>Krop</li>
+          </ul>
+        </div>
+      </article>
+      <article class="svc reveal d1" tabindex="0">
+        <div class="img" data-label="spraytan1.jpg"><img src="spraytan1.jpg" alt="Spray tan behandling" onerror="this.style.display='none'"></div>
+        <div class="svc-body">
+          <span class="svc-index">04 — Spray Tan</span>
+          <h3>Spray Tan</h3>
+          <ul class="svc-list">
+            <li>Overkrop</li>
+            <li>Ben</li>
+            <li>Hele Kroppen</li>
+            <li>Ekstra Mørk Tan</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="s why">
+  <div class="container">
+    <div class="s-head reveal">
+      <span class="eyebrow centered">Hvorfor Studio Skøn</span>
+      <h2 class="serif-title section-title">Hvorfor Vælge Os</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 13a4 4 0 100-8 4 4 0 000 8z"/><path d="M5 20c0-3.3 3.1-5 7-5s7 1.7 7 5"/></svg></div>
+        <div class="wtxt"><h4>Personlig service</h4><p>Hver behandling skræddersyes til netop dig og dine ønsker.</p></div>
+      </div>
+      <div class="why-card reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5L12 21l-5 2.6 1-5.5-4-3.9 5.5-.8z"/></svg></div>
+        <div class="wtxt"><h4>Mange års erfaring</h4><p>Mere end ti år bag faget og tusindvis af tilfredse kunder.</p></div>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l7 4v6c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="wtxt"><h4>Premium produkter</h4><p>Vi arbejder udelukkende med produkter af højeste kvalitet.</p></div>
+      </div>
+      <div class="why-card reveal d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="wtxt"><h4>Høj hygiejne</h4><p>Sterile redskaber og omhyggelig hygiejne ved enhver behandling.</p></div>
+      </div>
+      <div class="why-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21c5-3 8-6.5 8-11a4 4 0 00-8-1 4 4 0 00-8 1c0 4.5 3 8 8 11z"/></svg></div>
+        <div class="wtxt"><h4>Naturlige resultater</h4><p>Et raffineret udtryk der fremhæver din naturlige skønhed.</p></div>
+      </div>
+      <div class="why-card reveal d1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12l4-7h10l4 7-9 9z"/><path d="M3 12h18"/><path d="M12 5l-2 7 2 9 2-9z"/></svg></div>
+        <div class="wtxt"><h4>Fokus på kvalitet</h4><p>Ingen genveje — kun grundigt og velgennemført håndværk.</p></div>
+      </div>
+      <div class="why-card reveal d2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12c0 5-4 8-9 8a9 9 0 01-7-3l-2 1 1-4a9 9 0 11 17-2z"/></svg></div>
+        <div class="wtxt"><h4>Afslappende atmosfære</h4><p>Et roligt miljø, hvor du kan koble af og være helt til stede.</p></div>
+      </div>
+      <div class="why-card reveal d3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M8 21l4-2 4 2-1-5 4-3-5-.5L12 8l-2 4.5L5 13l4 3z"/></svg></div>
+        <div class="wtxt"><h4>Høj kundetilfredshed</h4><p>Loyale kunder, der vender tilbage igen og igen.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="s" id="galleri">
+  <div class="container">
+    <div class="s-head reveal">
+      <span class="eyebrow centered">Galleri</span>
+      <h2 class="serif-title section-title">Et Udvalg Af Vores Arbejde</h2>
+    </div>
+    <div class="gallery-feat">
+      <div class="gitem reveal"><div class="img g-tall" data-label="nails1.jpg"><img src="nails1.jpg" alt="Negle" onerror="this.style.display='none'"></div></div>
+      <div class="gitem reveal d1"><div class="img g-tall" data-label="lashes1.jpg"><img src="lashes1.jpg" alt="Vipper" onerror="this.style.display='none'"></div></div>
+      <div class="gitem reveal d2"><div class="img g-tall" data-label="salon1.jpg"><img src="salon1.jpg" alt="Salon" onerror="this.style.display='none'"></div></div>
+    </div>
+    <div class="gallery-more reveal">
+      <a href="gallery.html" class="btn gold"><span>Se Flere</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ATMOSPHERE ============ -->
+<section class="atmos">
+  <div class="atmos-grid">
+    <div class="atmos-img"><div class="img" data-label="salon1.jpg"><img src="salon1.jpg" alt="Atmosfære" onerror="this.style.display='none'"></div></div>
+    <div class="atmos-img"><div class="img" data-label="salon2.jpg"><img src="salon2.jpg" alt="Atmosfære" onerror="this.style.display='none'"></div></div>
+    <div class="atmos-img"><div class="img" data-label="salon3.jpg"><img src="salon3.jpg" alt="Atmosfære" onerror="this.style.display='none'"></div></div>
+  </div>
+  <div class="atmos-text reveal">
+    <span class="eyebrow centered">Atmosfære</span>
+    <h2 class="serif-title">Et Sted Til Dig</h2>
+    <p>Vi har skabt et roligt og elegant miljø, hvor du kan slappe af og nyde lidt tid til dig selv.</p>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section class="s-tight">
+  <div class="container">
+    <div class="insta-head reveal">
+      <div>
+        <span class="eyebrow">Følg Med</span>
+        <h2 class="serif-title" style="margin-top:16px">På Instagram</h2>
+      </div>
+      <span class="tag">@studioskon</span>
+    </div>
+    <div class="insta-grid">
+      <a href="https://instagram.com" class="gi reveal" target="_blank" rel="noopener"><div class="img" data-label="insta1.jpg"><img src="insta1.jpg" alt="Instagram" onerror="this.style.display='none'"></div></a>
+      <a href="https://instagram.com" class="gi reveal" target="_blank" rel="noopener"><div class="img" data-label="insta2.jpg"><img src="insta2.jpg" alt="Instagram" onerror="this.style.display='none'"></div></a>
+      <a href="https://instagram.com" class="gi reveal" target="_blank" rel="noopener"><div class="img" data-label="insta3.jpg"><img src="insta3.jpg" alt="Instagram" onerror="this.style.display='none'"></div></a>
+      <a href="https://instagram.com" class="gi reveal" target="_blank" rel="noopener"><div class="img" data-label="insta4.jpg"><img src="insta4.jpg" alt="Instagram" onerror="this.style.display='none'"></div></a>
+      <a href="https://instagram.com" class="gi reveal" target="_blank" rel="noopener"><div class="img" data-label="insta5.jpg"><img src="insta5.jpg" alt="Instagram" onerror="this.style.display='none'"></div></a>
+      <a href="https://instagram.com" class="gi reveal" target="_blank" rel="noopener"><div class="img" data-label="insta6.jpg"><img src="insta6.jpg" alt="Instagram" onerror="this.style.display='none'"></div></a>
+    </div>
+    <div class="insta-cta reveal">
+      <a href="https://instagram.com" class="btn gold" target="_blank" rel="noopener"><span>Følg På Instagram</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GIFT CARD ============ -->
+<section class="gift">
+  <div class="container">
+    <div class="gift-box reveal">
+      <span class="eyebrow">Gavekort</span>
+      <h2 class="serif-title">Giv Skønhed I Gave</h2>
+      <p>Forkæl en, du holder af, med en stund af ro og velvære. Vores gavekort kan bruges til alle behandlinger og pakkes smukt ind — den perfekte gave til enhver anledning.</p>
+      <a href="#kontakt" class="btn filled-light"><span>Bestil Gavekort</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="s reviews" id="anmeldelser">
+  <div class="container">
+    <div class="s-head reveal">
+      <span class="eyebrow centered">Anmeldelser</span>
+      <h2 class="serif-title section-title">Hvad Vores Kunder Siger</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Jeg har været fast kunde i over to år, og kvaliteten skuffer aldrig. Mine negle holder længere end nogensinde."</p>
+        <div class="who"><span class="av">S</span><div><b>Sofie L.</b><small>Fast kunde</small></div></div>
+      </div>
+      <div class="rev reveal d1">
+        <div class="stars">★★★★★</div>
+        <p>"En rolig og professionel oplevelse. Man føler sig virkelig taget hånd om fra start til slut."</p>
+        <div class="who"><span class="av">C</span><div><b>Camilla B.</b><small>Vipper</small></div></div>
+      </div>
+      <div class="rev reveal d2">
+        <div class="stars">★★★★★</div>
+        <p>"Detaljen og omhuen er i særklasse. Jeg er altid tryg ved at lægge mit udseende i hendes hænder."</p>
+        <div class="who"><span class="av">L</span><div><b>Louise H.</b><small>Bryn Styling</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="s" id="kontakt">
+  <div class="container">
+    <div class="s-head reveal" style="margin-bottom:54px">
+      <span class="eyebrow centered">Kontakt</span>
+      <h2 class="serif-title section-title">Besøg Studio Skøn</h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <span class="eyebrow">Vi Glæder Os Til At Se Dig</span>
+        <h2 class="serif-title">Find Vej Til Os</h2>
+        <p>Du er altid velkommen til at kontakte os direkte for spørgsmål eller tidsbestilling.</p>
+
+        <div class="cinfo-row">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.9 2.2z"/></svg></div>
+          <div><b>Telefon</b><a href="tel:+4512345678">+45 12 34 56 78</a></div>
+        </div>
+        <div class="cinfo-row">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></div>
+          <div><b>Email</b><a href="mailto:info@studioskon.dk">info@studioskon.dk</a></div>
+        </div>
+        <div class="cinfo-row">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 21s7-6 7-11a7 7 0 00-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><b>Adresse</b><span>Bredgade 24, 1260 København K</span></div>
+        </div>
+        <div class="cinfo-row">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><b>Åbningstider</b><span class="hours">Man – Fre&nbsp;&nbsp;09 – 18<br>Lørdag&nbsp;&nbsp;10 – 15<br>Søndag&nbsp;&nbsp;Lukket</span></div>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe title="Studio Skøn på kortet" src="https://maps.google.com/maps?q=Bredgade%2024%20K%C3%B8benhavn&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">
+          <span class="logo-mark">S</span>
+          <span class="logo-word"><b>Studio Skøn</b><small>København</small></span>
+        </div>
+        <p>Et eksklusivt skønhedsstudie med fokus på naturlige resultater, kvalitet og velvære i hjertet af København.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="#hero">Forside</a></li>
+          <li><a href="#behandlinger">Behandlinger</a></li>
+          <li><a href="#om-mig">Om Mig</a></li>
+          <li><a href="#galleri">Galleri</a></li>
+          <li><a href="#anmeldelser">Anmeldelser</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Kontakt</h5>
+        <p>
+          Bredgade 24<br>1260 København K<br><br>
+          <a href="tel:+4512345678">+45 12 34 56 78</a><br>
+          <a href="mailto:info@studioskon.dk">info@studioskon.dk</a>
+        </p>
+      </div>
+      <div class="foot-col">
+        <h5>Åbningstider</h5>
+        <p>Man – Fre&nbsp;&nbsp;09 – 18<br>Lørdag&nbsp;&nbsp;10 – 15<br>Søndag&nbsp;&nbsp;Lukket</p>
+        <div class="foot-social">
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 3h-3a4 4 0 00-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Studio Skøn. Alle rettigheder forbeholdes.</p>
+      <a href="#">Privatlivspolitik</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING CONTACT BUTTON ============ -->
+<div class="fab-wrap" id="fabWrap">
+  <div class="contact-card" id="contactCard" role="dialog" aria-label="Kontaktinformation">
+    <div class="cc-head">
+      <div class="mark">S</div>
+      <b>Studio Skøn</b>
+      <small>Kontakt Os Direkte</small>
+    </div>
+    <div class="cc-body">
+      <a class="cc-link" href="tel:+4512345678">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.6 2.7.7a2 2 0 011.9 2.2z"/></svg></span>
+        <div><small>Telefon</small><b>+45 12 34 56 78</b></div>
+      </a>
+      <a class="cc-link" href="mailto:info@studioskon.dk">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></span>
+        <div><small>Email</small><b>info@studioskon.dk</b></div>
+      </a>
+    </div>
+  </div>
+  <button class="fab" id="fab" aria-label="Åbn kontakt" aria-expanded="false">
+    <svg class="ic-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 9 9 0 01-4-1L3 20l1.1-3.8A8.4 8.4 0 0112 3a8.4 8.4 0 019 8.5z"/></svg>
+    <svg class="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+</div>
+
+<script>
+(function(){
+  // Sticky header
+  var header=document.getElementById('header');
+  var onScroll=function(){
+    if(window.scrollY>40)header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // Mobile menu
+  var burger=document.getElementById('burger');
+  var menu=document.getElementById('menu');
+  var toggleMenu=function(){
+    var open=document.body.classList.toggle('menu-open');
+    burger.setAttribute('aria-expanded',open);
+  };
+  burger.addEventListener('click',toggleMenu);
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      document.body.classList.remove('menu-open');
+      burger.setAttribute('aria-expanded',false);
+    });
+  });
+
+  // Reveal on scroll
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}
+    });
+  },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  // Floating contact button
+  var fab=document.getElementById('fab');
+  var fabWrap=document.getElementById('fabWrap');
+  var card=document.getElementById('contactCard');
+  var closeCard=function(){
+    fabWrap.classList.remove('fab-open');
+    fab.setAttribute('aria-expanded',false);
+  };
+  fab.addEventListener('click',function(e){
+    e.stopPropagation();
+    var open=fabWrap.classList.toggle('fab-open');
+    fab.setAttribute('aria-expanded',open);
+  });
+  document.addEventListener('click',function(e){
+    if(!fabWrap.contains(e.target))closeCard();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape')closeCard();
+  });
+})();
+</script>
+</body>
+</html>
